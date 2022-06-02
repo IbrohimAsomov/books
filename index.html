@@ -6,9 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Tamplate</title>
+    <title>Books</title>
 </head>
 <body>
+    <header class="container border-bottom border-2">
+        <div class="row pt-2 b-2">
+            <div class="col-3">
+                <a href="#">
+                    <img src="./img/logo.svg" alt="logo" width="226" height="44">
+                </a>
+            </div>
+
+            <form action="" method="GET" class="d-flex col-6" id="header-form">
+                <input type="text" placeholder="Search books" class="form-control bg-light" id="header-input" aria-describedby="name">
+                <button class="header-btn btn ms-2 btn-danger">Submit</button>
+            </form>
+
+            <div class="col-3 text-end">
+                <button class="btn" id="dark-mode">
+                    <img src="./img/sun.svg" alt="dark-mode" width="23">
+                </button>
+            </div>
+        </div>
+    </header>
+
+
 
     <script src="./js/bootstrap.js"></script>
     <script src="./js/main.js"></script>
