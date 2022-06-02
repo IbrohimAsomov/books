@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +9,19 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Books</title>
 </head>
+
 <body>
     <header class="container border-bottom border-2">
         <div class="row pt-2 pb-2">
-            <div class="col-3">
+            <div class="col-3 text-dark">
                 <a href="./index.html">
                     <img src="./img/logo.svg" alt="logo" width="226" height="44">
                 </a>
             </div>
             
             <form action="" method="GET" class="d-flex col-6" id="header-form">
-                <input type="text" placeholder="Search books" class="form-control bg-light" id="header-input" aria-describedby="name">
+                <input type="text" placeholder="Search books" class="form-control bg-light" id="header-input"
+                aria-describedby="name">
                 <button class="header-btn btn ms-2 btn-danger">Submit</button>
             </form>
             
@@ -42,20 +45,41 @@
             <div class="row row-cols-2">
                 <div class="col-3 border-end border-2 p-4">
                     
-                    <h2 class="pb-2">Bookmarks</h2>
-                    <p class="h6 pb-4">If you don't like to read, you haven't found the right book</p>
+                    <h2 class="m-0 fw-bolder">Bookmarks</h2>
+                    <p class="h6 pb-4 fw-light ">If you don't like to read, you haven't found the right book</p>
                     
                     <ul id="bookmark-wrapper"></ul>
+                    
                     
                 </div>
                 
                 <div class="col-9 p-5 bg-light">
-                    <ul id="book-wrapper" class="row"></ul>
+                    <ul id="book-wrapper" class="row">
+                        <li class="col-4 mb-3">
+                            <div class="p-2 card border-3 bg-white">
+                                <img src="" id="book-img" class="p-3 bg-light rounded-3" alt="Book type">
+                                <div class="card-body">
+                                    <p id="book-name" class="h4 text-dark"></p>
+                                    <p id="book-author" class="text-secondary fw-bold"></p>
+                                    <p id="book-year" class="text-secondary fw-bold"></p>
+                                </div>
+                                <div class="row justify-content-center gap-1">
+                                    <button type="button" id="bookmark-btn"
+                                    class="btn btn-warning col-5 fw-bold">Bookmark</button>
+                                    <button class="btn btn-light col-5 fw-bold text-primary" id="modal-info"
+                                    type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                    aria-controls="offcanvasRight">More Info</button>
+                                    <a target="_BLANK" id="read-btn"
+                                    class="btn btn-secondary col-10 text-white fw-bold">Read</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                     
-                    <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-toolbar justify-content-center" role="toolbar"aria-label="Toolbar with button groups">
                         <div class="btn-group me-2" role="group" aria-label="First group">
                             <button type="button" class="btn btn-secondary me-2 fw-bold"><</button>
-                            <button type="button" class="btn btn-outline-primary me-2 fw-bold" >1</button>
+                            <button type="button" class="btn btn-outline-primary me-2 fw-bold">1</button>
                             <button type="button" class="btn btn-outline-secondary me-2 fw-bold">2</button>
                             <button type="button" class="btn btn-outline-secondary me-2 fw-bold">...</button>
                             <button type="button" class="btn btn-outline-secondary fw-bold">></button>
@@ -65,8 +89,66 @@
             </div>
         </div>
     </main>
-
+    
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header bg-light">
+            <h5 class="modal-title modal-name" id="staticBackdropLabel"></h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <img class="mb-4 ms-5" src="" id="modal-img" alt="book" width="230" height="300">
+            
+            <p class="mb-5 text-secondary" id="modal-summary"></p>
+            
+            <div class="modal-wrapper">
+                <p class="h6 mb-4">Author: <span id="modal-author" class="modal-text bg-light text-primary p-2 ms-3"></span></p>
+                <p class="h6 mb-4">Published: <span id="modal-published" class="modal-text bg-light text-primary p-2  ms-3"></span></p>
+                <p class="h6 mb-4">Publishers: <span id="modal-publishers" class="modal-text bg-light text-primary p-2 ms-3"></span></p>
+                <p class="h6 mb-5">Categories: <span id="modal-categories" class="modal-text bg-light text-primary p-2 ms-3"></span></p>
+                <p class="h6">Pages Count: <span id="modal-page" class="modal-text bg-light text-primary p-2 ms-3"></span></p>
+            </div>
+        </div>
+        <div class="offcanvas-footer bg-light">
+            <a target="_BLANK" class="btn btn-secondary" id="read-btn">read</a>
+        </div>
+    </div>
+    
+    <template id="book-template">
+        <li class="col-4 mb-3">
+            <div class="p-2 card border-3 bg-white">
+                <img src="" id="book-img" class="p-3 bg-light rounded-3" alt="Book">
+                <div class="card-body">
+                    <p id="book-name" class="h4 text-dark"></p>
+                    <p id="book-author" class="text-secondary fw-bold"></p>
+                    <p id="book-year" class="text-secondary fw-bold"></p>
+                </div>
+                <div class="row justify-content-center gap-1">
+                    <button type="button" id="bookmark-btn" class="btn btn-warning col-5 fw-bold">Bookmark</button>
+                    <button class="btn btn-light col-5 fw-bold text-primary" id="modal-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">More Info</button>
+                    <a target="_BLANK" id="read-btn" class="btn btn-secondary col-10 text-white fw-bold">Read</a>
+                </div>
+            </div>
+        </li>
+    </template>
+    
+    <template id="bookmark-template">
+        <li class="row bg-light rounded-3 p-2 m-2 border">
+            <div class="col-8">
+                <p class="h4 m-0 mb-1" id="bookmark-name">Python</p>
+                <span class="h6 text-secondary" id="bookmark-author">David M. Beazley</span>
+            </div>
+            
+            <div class="col-4 d-flex align-items-center">
+                <a target="_BLANK" id="read-btn" class="btn p-0 pe-2">
+                    <img src="./img/book.svg" alt="book">
+                </a>
+                <button id="remove-btn" class="btn btn-danger">X</button>
+            </div>
+        </li>
+    </template>
+    
     <script src="./js/bootstrap.js"></script>
     <script src="./js/main.js"></script>
 </body>
+
 </html>
